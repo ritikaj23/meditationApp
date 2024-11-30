@@ -11,9 +11,7 @@ export const unstable_settings = {
   initialRouteName: "login",
 };
 
-
 const Layout = () => {
-
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [fontsLoaded] = useFonts({
@@ -21,7 +19,6 @@ const Layout = () => {
     DMMedium: require("../assets/fonts/DMSans-Medium.ttf"),
     DMRegular: require("../assets/fonts/DMSans-Regular.ttf"),
   });
-
 
   useEffect(() => {
     const checkLoginState = async () => {
@@ -32,12 +29,12 @@ const Layout = () => {
         }
       } catch (error) {
         console.error("Error checking login state:", error);
+      } finally {
+        setIsLoading(false); // Ensure this runs after the try/catch
       }
-      setIsLoading(false);
     };
     checkLoginState();
   }, []);
-
 
   if (isLoading || !fontsLoaded) {
     return (
@@ -47,19 +44,18 @@ const Layout = () => {
     );
   }
 
-
   return (
     <ThemeProvider>
-      <NavigationContainer>
+      
         <Stack
           initialRouteName={isLoggedIn ? "home" : "login"}
           screenOptions={{ headerShown: false }}
         >
-          <Stack.Screen name="login" />
-          <Stack.Screen name="signup" />
-          <Stack.Screen name="home" />
+       <Stack.Screen name="login" />
+        <Stack.Screen name="signup" />
+        <Stack.Screen name="home" />
         </Stack>
-      </NavigationContainer>
+      
     </ThemeProvider>
   );
 };

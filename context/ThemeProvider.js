@@ -3,14 +3,18 @@ import React, { createContext, useContext, useState } from "react";
 
 const ThemeContext = createContext();
 
-// Step 2: Build the theme provider component
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState("light");
 
  
   const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    setTheme((prevTheme) => {
+      const newTheme = prevTheme === "light" ? "dark" : "light";
+      console.log("Toggling theme to:", newTheme); 
+      return newTheme;
+    });
   };
+  
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -21,5 +25,10 @@ export const ThemeProvider = ({ children }) => {
 
 
 export const useTheme = () => {
-  return useContext(ThemeContext);
-};
+    const context = useContext(ThemeContext);
+    if (!context) {
+      throw new Error("useTheme must be used within a ThemeProvider");
+    }
+    return context;
+  };
+  

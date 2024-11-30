@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { COLORS, FONT, SIZES } from "../constants/theme";
+import { COLORS, FONT, SIZES, SHADOWS } from "../constants/theme";
 
 const getThemeStyles = (isDark) => ({
 
