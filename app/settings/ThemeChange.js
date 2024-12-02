@@ -1,12 +1,15 @@
-import { Text, SafeAreaView, Switch, View } from "react-native";
+import { Text, SafeAreaView } from "react-native";
 import React from "react";
+import { Stack } from "expo-router";
 import { COLORS, SHADOWS, SIZES } from "../../constants";
-import ScreenHeaderBtn from "../../components/ScreenHeaderBtn";
 import { useTheme } from "../../context/ThemeProvider";
+import { Switch, View } from "react-native";
+import { TouchableOpacity } from "react-native";
+import ScreenHeaderBtn from "../../components/ScreenHeaderBtn";
 
 const ThemeChange = () => {
   console.log("hello from themechange");
-  const { theme, toggleTheme } = useTheme(); // Using the theme context
+  const { theme, toggleTheme } = useTheme(); 
   console.log('theme', theme);
   const isDarkMode = theme === "dark";
 
@@ -26,6 +29,7 @@ const ThemeChange = () => {
           borderRadius: SIZES.small,
           backgroundColor: isDarkMode ? COLORS.lightWhite : COLORS.darkBackground,
           ...SHADOWS.medium,
+          shadowColor: COLORS.white,
           marginVertical: SIZES.medium,
           marginHorizontal: SIZES.medium,
         }}

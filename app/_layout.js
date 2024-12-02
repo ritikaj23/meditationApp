@@ -29,10 +29,10 @@ const Layout = () => {
         }
       } catch (error) {
         console.error("Error checking login state:", error);
-      } finally {
+      } 
         setIsLoading(false); // Ensure this runs after the try/catch
-      }
-    };
+      };
+    
     checkLoginState();
   }, []);
 
